@@ -13,7 +13,7 @@
 
 <%
 int i=CompanyDao.update(u);
-response.sendRedirect("viewusers.jsp");
+response.sendRedirect("Company.jsp");
 %>
 </body>
 </html>

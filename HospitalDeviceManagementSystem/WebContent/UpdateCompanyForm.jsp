@@ -27,28 +27,31 @@
 <br>
 <%@page import="com.nacre.dao.CompanyDao,com.nacre.beans.Company"%>
 <%
-String id=request.getParameter("id");
-Company u=ComapanyDao.getRecordById(Integer.parseInt(id));
+String id=request.getParameter("CompanyId");
+Company u=CompanyDao.getRecordById(Integer.parseInt(id));
 %>
 
-<h1>Update Contact</h1>
-<form action="edituser.jsp" method="post">
-<input type="hidden" name="id" value="<%=u.getId() %>"/>
+<h1>Update Company</h1>
+<form action="UpdateCompanyForm.jsp" method="post">
+<input type="hidden" name="CompanyId" value="<%=u.getCompanyId() %>"/>
 <table>
-<tr><td>Name:</td><td><input type="text" name="name" value="<%= u.getName()%>"/></td></tr>
-<tr><td>Password:</td><td><input type="password" name="password" value="<%= u.getPassword()%>"/></td></tr>
-<tr><td>Email:</td><td><input type="email" name="email" value="<%= u.getEmail()%>"/></td></tr>
-<tr><td>Sex:</td><td><input type="radio" name="sex" value="male"/>Male <input type="radio" name="sex" value="female"/>Female </td></tr>
+<tr><td>Name:</td><td><input type="text" name="CompanyName" value="<%= u.getCompanyName()%>"/></td></tr>
+<tr><td>Contact:</td><td><input type="text" name="Contact" value="<%= u.getContact()%>"/></td></tr>
+<tr><td>City:</td><td><input type="text" name="City" value="<%= u.getCity()%>"/></td></tr>
+<tr><td>Street:</td><td><input type="text" name="Street" value="<%= u.getStreet()%>"/></td></tr>
+<tr><td>District:</td><td><input type="text" name="District" value="<%= u.getDistrict()%>"/></td></tr>
+<tr><td>State:</td><td><input type="text" name="State" value="<%= u.getState()%>"/></td></tr>
 <tr><td>Country:</td><td>
 <select name="country">
 <option>India</option>
 <option>Pakistan</option>
-<option>Afghanistan</option>
+<option>Bankok</option>
 <option>Berma</option>
-<option>Other</option>
 </select>
 </td></tr>
-<tr><td colspan="2"><input type="submit" value="Edit User"/></td></tr>
+<tr><td>Email:</td><td><input type="text" name="Email" value="<%= u.getMailId()%>"/></td></tr>
+<tr><td>Status:</td><td><input type="text" name="Status" value="<%= u.getStatus()%>"/></td></tr>
+<tr><td colspan="2"><input type="submit" value="Update Company"/></td></tr>
 </table>
 </form>
 </body>
