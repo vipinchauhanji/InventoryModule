@@ -1,16 +1,13 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="com.nacre.dao.CompanyDao,com.nacre.beans.Company,java.util.*"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
@@ -22,29 +19,37 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="AddCompany.jsp">AddCompany</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="Login.html">LogOut</a>
       </li>     
     </ul>
   </div>  
 </nav>
 <br>
-
-<h1>Company's List</h1>
-
+<%@page import="com.nacre.dao.CompanyDao,com.nacre.beans.Company"%>
 <%
-List<Company> list=CompanyDao.getCompanyDetails();
-request.setAttribute("list",list);  
+String id=request.getParameter("id");
+Company u=ComapanyDao.getRecordById(Integer.parseInt(id));
 %>
 
-<table border="1" width="90%">
-<tr><th>CompanyId</th><th>CompanyName</th><th>contact</th><th>Street</th><th>Town</th><th>City</th><th>State</th><th>Country</th><th>MailId</th><th>Status</th></tr>
-<c:forEach items="${list}" var="u">
-	<tr><td>${u.getCompanyId()}</td><td>${u.getCompanyName()}</td><td>${u.getContact()}</td><td>${u.getStreet()}</td><td>${u.getDistrict()}</td><td>${u.getCity()}</td><td>${u.getState()}</td><td>${u.getCountry()}</td><td>${u.getMailId()}</td><td>${u.getStatus()}</td><td><a href="UpdateCompanyForm.jsp?companyId=${u.getCompanyId()}">Edit</a></td><td><a href="DeleteCompany.jsp?companyId=${u.getCompanyId()}">Delete</a></td></tr>
-</c:forEach>
+<h1>Update Contact</h1>
+<form action="edituser.jsp" method="post">
+<input type="hidden" name="id" value="<%=u.getId() %>"/>
+<table>
+<tr><td>Name:</td><td><input type="text" name="name" value="<%= u.getName()%>"/></td></tr>
+<tr><td>Password:</td><td><input type="password" name="password" value="<%= u.getPassword()%>"/></td></tr>
+<tr><td>Email:</td><td><input type="email" name="email" value="<%= u.getEmail()%>"/></td></tr>
+<tr><td>Sex:</td><td><input type="radio" name="sex" value="male"/>Male <input type="radio" name="sex" value="female"/>Female </td></tr>
+<tr><td>Country:</td><td>
+<select name="country">
+<option>India</option>
+<option>Pakistan</option>
+<option>Afghanistan</option>
+<option>Berma</option>
+<option>Other</option>
+</select>
+</td></tr>
+<tr><td colspan="2"><input type="submit" value="Edit User"/></td></tr>
 </table>
-
+</form>
 </body>
 </html>

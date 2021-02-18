@@ -9,9 +9,9 @@ public class QueryConstants {
 	// Insert Query for company
 	public final static String Company_INSERT_QUERY="INSERT INTO company(companyid,companyname,street,city,district,state,country,mailid,contact,status) VALUES(?,?,?,?,?,?,?,?,?,?)";
 	// Delete query for company
-	public final static String Company_Delete_Query="";
+	public final static String Company_Delete_Query="delete from company where id=?";
 	// Update query for Company
 	public final static String Company_Update_Query="";
 	
-//"insert into register(name,password,email,sex,country) values(?,?,?,?,?)");  
+
 }

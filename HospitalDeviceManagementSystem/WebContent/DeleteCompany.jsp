@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@page import="com.nacre.dao.CompanyDao"%>
+<jsp:useBean id="u" class="com.nacre.beans.Company"></jsp:useBean>
+<jsp:setProperty property="*" name="u"/>
 
+<%
+CompanyDao.delete(u);
+response.sendRedirect("Company.jsp");
+%>
 </body>
 </html>
